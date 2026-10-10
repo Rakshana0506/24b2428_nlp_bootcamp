@@ -1,0 +1,57 @@
+{
+  "name": "Rakshana Sundaram",
+  "roll_no": "24B2428",
+  "seed": 42,
+  "gpu_used": "Tesla T4",
+  "task1": {
+    "bm25_settings": "own implementation, Lucene idf, k1=0.9, b=1.0, snowball stemming, stopwords kept, title x5",
+    "val_ndcg10": 0.8735
+  },
+  "task2": {
+    "general_model": "BAAI/bge-large-en-v1.5",
+    "scientific_model": "ncbi/MedCPT-Query-Encoder + ncbi/MedCPT-Article-Encoder",
+    "val_ndcg10_general": 0.9328,
+    "val_ndcg10_scientific": 0.8509,
+    "index_time_sec": {
+      "general": 117.43,
+      "scientific": 42.59
+    },
+    "query_latency_ms": {
+      "general": 46.41,
+      "scientific": 46.67
+    },
+    "memory_mb": {
+      "general": 1361.8,
+      "scientific": 453.9
+    }
+  },
+  "task3": {
+    "hybrid_method": "z-score interpolation 0.7 general + 0.15 bm25 + 0.15 scientific",
+    "reranker_model": "ncbi/MedCPT-Cross-Encoder",
+    "rerank_top_k": 3,
+    "val_ndcg10_hybrid": 0.9352,
+    "val_ndcg10_rerank": 0.9259,
+    "rerank_query_latency_ms": 24.55
+  },
+  "task4": {
+    "base_model": "BAAI/bge-large-en-v1.5",
+    "val_ndcg10_random_negatives": 0.9153,
+    "val_ndcg10_hard_negatives": 0.946
+  },
+  "task5": {
+    "retriever_used": "fine-tuned (hard negatives): BAAI/bge-large-en-v1.5",
+    "nli_model": "MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli",
+    "zero_shot_or_finetuned": "finetuned",
+    "val_f1": 0.784
+  },
+  "report_q1": {
+    "bm25_wins": [
+      673,
+      34
+    ],
+    "general_wins": [
+      463,
+      541
+    ]
+  }
+}
